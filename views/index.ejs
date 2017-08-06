@@ -5,6 +5,11 @@
 </head>
 <body>
 <h1>Index Page</h1>
+<% for(post of posts) {%>
+	<%= post %><br>
+<% } %>
 <a href="/posts/new">New Post</a>
+<a href="/users/new">New User</a>
+<%= user %>
 </body>
 </html>
