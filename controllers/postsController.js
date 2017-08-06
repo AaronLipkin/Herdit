@@ -8,6 +8,7 @@ router.get('/new', (req, res) => {
 })
 
 router.post('/new', (req, res) => {
+	req.body.user = req.session.username;
 	Post.create(req.body, (err, newPost)=> {
 		console.log(newPost)
 		res.redirect('/posts/' + newPost._id)
