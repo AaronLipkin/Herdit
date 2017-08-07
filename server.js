@@ -38,8 +38,9 @@ app.get('/', (req, res)=>{
 
 
 
-mongoose.connect('mongodb://localhost:27017/herdit');
+var mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/herdit';
 
+mongoose.connect(mongoUri);
 mongoose.connection.once('open', ()=>{
 	console.log('connected to mongo');
 });

@@ -11,8 +11,9 @@ header {
 .index-post {
 	display: flex;
 	width: 100%;
-	margin: 20px;
+	padding: 20px;
 	overflow: auto;
+	border-top: 2px solid black;
 }
 
 .post-title {

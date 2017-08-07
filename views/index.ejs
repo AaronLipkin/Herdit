@@ -20,9 +20,13 @@
 <% for(post of posts) {%>
 	<div class="index-post">
 	<div class="arrows">
-		<img class="up arrow" src="./up-unselected.png">
+	<form action="/posts/<%= post._id %>/like" method="POST">
+		<input class="up arrow" type="image" src="./up-unselected.png"></form>
+		</form>
 		<h2 class="score"><%= post.likes - post.dislikes %></h2>
-		<img class="down arrow" src="./down-unselected.png">
+		<form action="/posts/<%= post._id %>/dislike" method="POST">
+		<input class="down arrow" type="image" src="./down-unselected.png"></form>
+		</form>
 	</div>
 	<div class="post-info">
 	<a href="<%= post.link %>"><h3 class="post-title"><%= post.title %></h3></a>

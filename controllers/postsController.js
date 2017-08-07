@@ -25,4 +25,26 @@ router.get('/:id', (req, res) => {
 })
 
 
+router.post('/:id/like', (req,res)=> {
+	Post.findByIdAndUpdate(
+		req.params.id,
+		{ $inc : { likes : +1 } }, 
+		(err, editedProduct) => {
+			console.log(err)
+			console.log(editedProduct)
+	})
+})
+
+router.post('/:id/dislike', (req,res)=> {
+	Post.findByIdAndUpdate(
+		req.params.id,
+		{ $inc : { likes : -1 } }, 
+		(err, editedProduct) => {
+			console.log(err)
+			console.log(editedProduct)
+	})
+})
+
+
+
 module.exports = router
