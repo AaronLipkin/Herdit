@@ -45,6 +45,8 @@ mongoose.connection.once('open', ()=>{
 	console.log('connected to mongo');
 });
 
-app.listen(3000, ()=>{
+port = process.env.PORT || 3000;
+
+app.listen(port, ()=>{
 	console.log('listening....');
 });
