@@ -7,6 +7,8 @@ const User 			 = require('./models/usersModel.js')
 const Post 			 = require('./models/postsModel.js')
 const session        = require('express-session');
 
+
+app.use(express.static('public'))
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({extended:false}));
 
@@ -28,7 +30,8 @@ app.get('/', (req, res)=>{
 	Post.find({}, (err, foundPosts) => {
 		res.render('index.ejs', {
 			posts: foundPosts,
-			user: req.session.username
+			user: req.session.username,
+			logged: req.session.logged
 		});
 	})
 });

@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
+<% include ./partials/head.ejs %>
 	<title>Index Page</title>
 </head>
 <body>
-<h1>Index Page</h1>
-<% for(post of posts) {%>
-	<%= post %><br>
+<header>
+<h1 class="logo">Herdit</h1>
+<div class="login-register">
+<% if(!logged) { %>
+	<a href="/sessions/login">Log-In</a> / 
+	<a href="/sessions/register">Register</a>
+<% } else { %>
+	<p><%= user %></p>
 <% } %>
-<a href="/posts/new">New Post</a>
-<a href="/users/new">New User</a>
-<%= user %>
+</div>
+</header>
+<section class="posts">
+<% for(post of posts) {%>
+	<div class="index-post">
+	<div class="arrows">
+		<img class="up arrow" src="./up-unselected.png">
+		<h2 class="score"><%= post.likes - post.dislikes %></h2>
+		<img class="down arrow" src="./down-unselected.png">
+	</div>
+	<div class="post-info">
+	<a href="<%= post.link %>"><h3 class="post-title"><%= post.title %></h3></a>
+	<h4 class="poster"><%= post.user %></h4>
+	<img class="show-video hidden" src="./play@2x.png">
+	<div class="song"><%- post.link %></div>
+	</div>
+	</div>
+<% } %>
+</section>
 </body>
 </html>

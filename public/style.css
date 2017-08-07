@@ -1,0 +1,54 @@
+header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.posts {
+	width: 98%;
+	margin: 0 auto;
+}
+
+.index-post {
+	display: flex;
+	width: 100%;
+	margin: 20px;
+	overflow: auto;
+}
+
+.post-title {
+	font-size: 24px;
+}
+
+.poster {
+	font-size: 16px;
+	color: grey;
+}
+
+.arrow {
+	display: block;
+	text-align: center;
+	height: 20px;
+	margin: 5px 20px;
+}
+
+.arrow:hover {
+	cursor: pointer;
+}
+
+.score	{
+	text-align: center;
+}
+
+.song {
+	display: none;
+}
+
+.show-video {
+	margin: 2px;
+	height: 30px;
+}
+
+.show-video:hover {
+	cursor: pointer;
+}
+
