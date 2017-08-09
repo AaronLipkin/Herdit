@@ -1,6 +1,8 @@
 header {
 	display: flex;
 	justify-content: space-between;
+	padding: 30px 50px;
+	border-bottom: 2px solid grey;
 }
 
 .posts {
@@ -13,7 +15,6 @@ header {
 	width: 100%;
 	padding: 20px;
 	overflow: auto;
-	border-top: 2px solid black;
 }
 
 .post-title {
@@ -38,6 +39,7 @@ header {
 
 .score	{
 	text-align: center;
+	font-weight: bold;
 }
 
 .song {
@@ -53,3 +55,11 @@ header {
 	cursor: pointer;
 }
 
+
+.logo {
+	font-size: 35px;
+}
+
+.username {
+	text-align: center;
+}

@@ -27,12 +27,15 @@ const sessionsController = require('./controllers/sessionsController.js');
 app.use('/sessions', sessionsController);
 
 app.get('/', (req, res)=>{
-	Post.find({}, (err, foundPosts) => {
-		res.render('index.ejs', {
-			posts: foundPosts,
-			user: req.session.username,
-			logged: req.session.logged
-		});
+	User.findOne({username : req.session.username}, (err,foundUser) => {
+		Post.find({}, (err, foundPosts) => {
+			res.render('index.ejs', {
+				posts: foundPosts,
+				user: req.session.username,
+				logged: req.session.logged,
+				UserObject: foundUser
+			});
+		})
 	})
 });
 

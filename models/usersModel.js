@@ -4,6 +4,8 @@ const userSchema = mongoose.Schema({
 	username: 	{ type: String, required: true },
 	password: 	{ type: String, required: true },
 	posts: 		Array,
+	likedPosts: Array,
+	dislikedPosts: Array,
 	points: 	Number
 });
 

@@ -26,24 +26,65 @@ router.get('/:id', (req, res) => {
 
 
 router.post('/:id/like', (req,res)=> {
-	Post.findByIdAndUpdate(
-		req.params.id,
-		{ $inc : { likes : +1 } }, 
-		(err, editedProduct) => {
-			console.log(err)
-			console.log(editedProduct)
-	})
+	if(req.session.logged) {
+		User.findOne({username: req.session.username}, (err,foundUser)=> {
+		Post.findById(req.params.id, (err, foundPost) => {
+				if(foundUser.likedPosts.indexOf(foundPost._id) !== -1) {
+					foundPost.likes--
+					foundUser.likedPosts.remove(foundPost._id)
+					foundPost.save()
+					foundUser.save()
+					res.redirect('back')
+				}
+				else {
+					if(foundUser.dislikedPosts.indexOf(foundPost._id) !== -1) {
+						foundPost.dislikes--
+						foundUser.dislikedPosts.remove(foundPost._id)
+					}
+					foundPost.likes++
+					foundUser.likedPosts.push(foundPost._id)
+					foundPost.save()
+					foundUser.save()
+					res.redirect('back')
+				}
+			})
+		})
+	}
+	else {
+			res.redirect('/sessions/register')
+	}
 })
 
 router.post('/:id/dislike', (req,res)=> {
-	Post.findByIdAndUpdate(
-		req.params.id,
-		{ $inc : { likes : -1 } }, 
-		(err, editedProduct) => {
-			console.log(err)
-			console.log(editedProduct)
-	})
+		if(req.session.logged) {
+		User.findOne({username: req.session.username}, (err,foundUser)=> {
+		Post.findById(req.params.id, (err, foundPost) => {
+				if(foundUser.dislikedPosts.indexOf(foundPost._id) !== -1) {
+					foundPost.dislikes--
+					foundUser.dislikedPosts.remove(foundPost._id)
+					foundPost.save()
+					foundUser.save()
+					res.redirect('back')
+				}
+				else {
+					if(foundUser.likedPosts.indexOf(foundPost._id) !== -1) {
+						foundPost.likes--
+						foundUser.likedPosts.remove(foundPost._id)
+					}
+					foundPost.dislikes++
+					foundUser.dislikedPosts.push(foundPost._id)
+					foundPost.save()
+					foundUser.save()
+					res.redirect('back')
+				}
+			})
+		})
+	}
+	else {
+			res.redirect('/sessions/register')
+	}
 })
+
 
 
 

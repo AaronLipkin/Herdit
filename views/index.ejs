@@ -12,20 +12,42 @@
 	<a href="/sessions/login">Log-In</a> / 
 	<a href="/sessions/register">Register</a>
 <% } else { %>
-	<p><%= user %></p>
+	<p class="username"><%= user %></p>
+	<a class="new-post" href="/posts/new">New Post!</a>
+	<a href="/sessions/logout">Logout</a>
 <% } %>
 </div>
 </header>
 <section class="posts">
 <% for(post of posts) {%>
-	<div class="index-post">
+	<div id="<%= post._id %>" class="index-post">
 	<div class="arrows">
 	<form action="/posts/<%= post._id %>/like" method="POST">
-		<input class="up arrow" type="image" src="./up-unselected.png"></form>
+	<% if(logged) { %>
+		<input class="up arrow" type="image" src="
+		<% if(UserObject.likedPosts.indexOf(post._id) !== -1) { %>
+		./up-selected.png
+		<% } else { %>
+		./up-unselected.png
+		<% } %>
+		"></form>
 		</form>
 		<h2 class="score"><%= post.likes - post.dislikes %></h2>
 		<form action="/posts/<%= post._id %>/dislike" method="POST">
+		<input class="down arrow" type="image" src="
+		<% if(UserObject.dislikedPosts.indexOf(post._id) !== -1) { %>
+		./down-selected.png
+		<% } else { %>
+		./down-unselected.png
+		<% } %>
+		"></form>
+		<%} else {%>
+		<form action="/posts/<%= post._id %>/like" method="POST">
+		<input class="up arrow" type="image" src="./up-unselected.png"></form>
+		<h2 class="score"><%= post.likes - post.dislikes %></h2>
+		<form action="/posts/<%= post._id %>/dislike" method="POST">
 		<input class="down arrow" type="image" src="./down-unselected.png"></form>
+		<% } %>
 		</form>
 	</div>
 	<div class="post-info">
