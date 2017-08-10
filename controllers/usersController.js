@@ -18,7 +18,10 @@ router.post('/new', (req, res) => {
 router.get('/:id', (req, res) => {
 	User.findById(req.params.id, (err, foundUser) => {
 		res.render('users/show.ejs', {
-			user: foundUser
+			showuser: foundUser,
+			user: req.session.username,
+			logged: req.session.logged,
+			UserObject: foundUser
 		})
 	})
 })

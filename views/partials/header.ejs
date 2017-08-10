@@ -1,0 +1,12 @@
+<header>
+<h1 class="logo">Herdit</h1>
+<div class="login-register">
+<% if(!logged) { %>
+	<button class="login-btn">Log-In</button>
+<% } else { %>
+	<p class="username"><%= user %></p>
+	<a class="new-post" href="/posts/new">New Post!</a>
+	<a href="/sessions/logout">Logout</a>
+<% } %>
+</div>
+</header>

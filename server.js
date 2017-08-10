@@ -29,6 +29,9 @@ app.use('/sessions', sessionsController);
 app.get('/', (req, res)=>{
 	User.findOne({username : req.session.username}, (err,foundUser) => {
 		Post.find({}, (err, foundPosts) => {
+			foundPosts.sort(function(b, a) {
+			    return parseFloat(a.likes - a.dislikes) - parseFloat(b.likes - b.dislikes);
+			});
 			res.render('index.ejs', {
 				posts: foundPosts,
 				user: req.session.username,

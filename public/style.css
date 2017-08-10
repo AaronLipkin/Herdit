@@ -1,3 +1,7 @@
+body {
+	font-family: verdana;
+}
+
 header {
 	display: flex;
 	justify-content: space-between;
@@ -5,10 +9,6 @@ header {
 	border-bottom: 2px solid grey;
 }
 
-.posts {
-	width: 98%;
-	margin: 0 auto;
-}
 
 .index-post {
 	display: flex;
@@ -17,12 +17,16 @@ header {
 	overflow: auto;
 }
 
+.index-post:nth-child(odd) {
+    background: rgba(211, 238, 255, .6);
+}
+
 .post-title {
-	font-size: 24px;
+	font-size: 32px;
 }
 
 .poster {
-	font-size: 16px;
+	font-size: 13px;
 	color: grey;
 }
 
@@ -40,6 +44,18 @@ header {
 .score	{
 	text-align: center;
 	font-weight: bold;
+}
+
+.liked {
+	color: blue;
+}
+
+.unliked {
+	color: black;
+}
+
+.disliked {
+	color: orange;
 }
 
 .song {
@@ -63,3 +79,188 @@ header {
 .username {
 	text-align: center;
 }
+
+/* Dropdown Button */
+.dropbtn {
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 15px;
+    text-align: right;
+    display: block;
+    position: absolute;
+    right: 0px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+	position: absolute;
+    display: inline;
+    right: 25px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: relative;
+    background-color: #f9f9f9;
+    width: 80px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 0px;
+    right: 17px;
+    height: 80px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    opacity: .6;
+}
+
+h3 {
+	display: inline-block;
+}
+
+/* Dropdown Button */
+.dropbtn2 {
+    color: blue;
+    display: block;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    width: 100px;
+    text-align: right;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown2 {
+	position: absolute;
+	right: 40px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content2 {
+    display: none;
+    position: relative;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0px;
+    top: 20px;
+    overflow: auto;
+}
+
+/* Links inside the dropdown */
+.dropdown-content2 input {
+	margin: 10px;
+    color: black;
+    padding: 6px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content2 button {
+	display: block;
+	margin: 0 auto 10px auto;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content2 input:focus {
+	background-color: rgba(211, 238, 255, .6);
+}
+
+/* Show the dropdown menu on hover */
+.dropdown2:hover .dropdown-content2 {
+    display: block;
+}
+
+.dropdown2 input:focus .dropdown-content2 {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown2:hover .dropbtn {
+    opacity: .6;
+}
+
+@keyframes fade-in {
+	from {opacity:0;}
+	to   {opacity:1;}
+}
+
+@keyframes slide-in {
+	from {transform: translate(-50%,-200%);}
+	to   {transform: translate(-50%,-50%);}
+}
+
+.login-background {
+	display: none;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,.7);
+	animation: fade-in;
+	animation-duration: .6s;
+}
+
+.login {
+	position: absolute;
+	background-color: white;
+	border-radius: 8px;
+	left: 50%;
+	top: 30%;
+	transform: translate(-50%,-50%);
+	width: 500px;
+	height: 200px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	animation: slide-in;
+	animation-duration: .6s;
+}
+
+.login-container {
+	text-align: center;
+	position: relative;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	display: flex;
+	justify-content: space-around;
+}
+
+hr {
+	margin: -20px -40px;
+}
+
+.col {
+	display: inline;
+	margin: 0px;
+}
+
+h2 {
+	color: blue;
+	text-align: center;
+}
+
+.login input {
+	margin: 3px;
+	border: 1px solid #ccc;
+	border-radius:4px;

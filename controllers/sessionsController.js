@@ -11,7 +11,7 @@ router.get('/login', (req, res, next) =>{
 
 
 router.get('/register', (req, res, next) => {
-  res.render('users/register.ejs', {})
+  res.render('users/register.ejs', {message: req.session.taken || ''})
 })
 
 router.post('/login', (req, res, next) => {
@@ -57,16 +57,22 @@ router.post('/register', (req, res, next) => {
   userDbEntry.username = req.body.username;
   userDbEntry.password = passwordHash
 
-  // lets put the password into the database
-  User.create(userDbEntry, (err, user) => {
-    console.log(user)
+  User.findOne({username: req.body.username}, (err, user) => {
 
+      if(user){
+        req.session.taken = "That username has already been taken, try again."
+        res.redirect('/sessions/register')
+      }
+else {
+  // lets put the password into the database
+  User.create(userDbEntry, (err, newUser) => {
     // lets set up the session in here we can use the same code we created in the login
-    req.session.username = user.username;
+    req.session.username = newUser.username;
     req.session.logged   = true;
     res.redirect('/')
   });
-
+}
+})
 })
 
 

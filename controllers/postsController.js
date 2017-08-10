@@ -8,10 +8,16 @@ router.get('/new', (req, res) => {
 })
 
 router.post('/new', (req, res) => {
-	req.body.user = req.session.username;
-	Post.create(req.body, (err, newPost)=> {
-		console.log(newPost)
-		res.redirect('/posts/' + newPost._id)
+	User.findOne({username : req.session.username}, (err, foundUser) => {
+		req.body.user = foundUser;
+		req.body.posted = Date.now()
+		Post.create(req.body, (err, newPost)=> {
+			console.log(foundUser)
+			foundUser.posts.push(newPost._id)
+			foundUser.save((err, data)=>{
+                res.redirect('/posts/' + newPost._id)
+			})
+		})
 	})
 })
 

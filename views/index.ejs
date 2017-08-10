@@ -5,19 +5,7 @@
 	<title>Index Page</title>
 </head>
 <body>
-<header>
-<h1 class="logo">Herdit</h1>
-<div class="login-register">
-<% if(!logged) { %>
-	<a href="/sessions/login">Log-In</a> / 
-	<a href="/sessions/register">Register</a>
-<% } else { %>
-	<p class="username"><%= user %></p>
-	<a class="new-post" href="/posts/new">New Post!</a>
-	<a href="/sessions/logout">Logout</a>
-<% } %>
-</div>
-</header>
+<% include ./partials/header.ejs %>
 <section class="posts">
 <% for(post of posts) {%>
 	<div id="<%= post._id %>" class="index-post">
@@ -32,7 +20,15 @@
 		<% } %>
 		"></form>
 		</form>
-		<h2 class="score"><%= post.likes - post.dislikes %></h2>
+		<h2 class="score 
+		<% if(UserObject.likedPosts.indexOf(post._id) !== -1) { %>
+		liked
+		<% } else if(UserObject.dislikedPosts.indexOf(post._id) !== -1) { %>
+		disliked
+		<% } else { %>
+		unliked
+		<% } %>
+		"><%= post.likes - post.dislikes %></h2>
 		<form action="/posts/<%= post._id %>/dislike" method="POST">
 		<input class="down arrow" type="image" src="
 		<% if(UserObject.dislikedPosts.indexOf(post._id) !== -1) { %>
@@ -44,7 +40,7 @@
 		<%} else {%>
 		<form action="/posts/<%= post._id %>/like" method="POST">
 		<input class="up arrow" type="image" src="./up-unselected.png"></form>
-		<h2 class="score"><%= post.likes - post.dislikes %></h2>
+		<h2 class="score unliked"><%= post.likes - post.dislikes %></h2>
 		<form action="/posts/<%= post._id %>/dislike" method="POST">
 		<input class="down arrow" type="image" src="./down-unselected.png"></form>
 		<% } %>
@@ -52,12 +48,29 @@
 	</div>
 	<div class="post-info">
 	<a href="<%= post.link %>"><h3 class="post-title"><%= post.title %></h3></a>
-	<h4 class="poster"><%= post.user %></h4>
+	<% if(user === post.user) { %>
+	<div class="dropdown">
+		  <image src="./dotsv.svg" class="dropbtn">
+		  <div class="dropdown-content">
+		    <a href="/posts/<%= post._id %>/edit">Edit</a>
+		    <a href="/posts/<%= post._id %>/delete?_method=DELETE">Delete</a>
+		  </div>
+	</div>
+	<% } %>
+	<h4 class="poster">posted <% if((-1* Math.round((post.posted - Date.now())/60000)) < 60) { %>
+	<%= -1* Math.round((post.posted - Date.now())/60000) %> minutes
+	<% } else if (-1* Math.round((post.posted - Date.now())/3600000) === 1){ %>
+	<%= -1* Math.round((post.posted - Date.now())/3600000) %> hour
+	<% } else { %>
+	<%= -1* Math.round((post.posted - Date.now())/3600000) %> hours
+	<% } %>
+	 ago by <a href="/users/<%= post.user._id %>"><%= post.user.username %></a><br>
 	<img class="show-video hidden" src="./play@2x.png">
 	<div class="song"><%- post.link %></div>
 	</div>
 	</div>
 <% } %>
 </section>
+<% include ./partials/login.ejs %>
 </body>
 </html>

@@ -26,4 +26,8 @@ $(() => {
 			$(e.currentTarget).addClass('hidden')
 		}
 	})
+
+	$('.login-btn').on('click', ()=> {
+		$('.login-background').css('display','block')
+	})
 })
