@@ -165,6 +165,7 @@ h3 {
 .login-background {
 	display: none;
 	position: absolute;
+	z-index: 2;
 	top: 0px;
 	left: 0px;
 	width: 100%;

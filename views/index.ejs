@@ -2,7 +2,7 @@
 <html>
 <head>
 <% include ./partials/head.ejs %>
-	<title>Index Page</title>
+	<title>Herdit</title>
 </head>
 <body>
 <% include ./partials/header.ejs %>
@@ -38,16 +38,13 @@
 		<% } %>
 		"></form>
 		<%} else {%>
-		<form action="/posts/<%= post._id %>/like" method="POST">
-		<input class="up arrow" type="image" src="/up-unselected.png"></form>
+		<img class="auth arrow" src="/up-unselected.png">
 		<h2 class="score unliked"><%= post.likes - post.dislikes %></h2>
-		<form action="/posts/<%= post._id %>/dislike" method="POST">
-		<input class="down arrow" type="image" src="/down-unselected.png"></form>
+		<img class="auth arrow" src="/down-unselected.png">
 		<% } %>
-		</form>
 	</div>
 	<div class="post-info">
-	<a target="_blank" href="<%= post.link %>"><h3 class="post-title"><%= post.title %></h3></a>
+	<a target="_blank" href="<%= post.link %>"><h3 class="post-title"><%= post.title %> by <%= post.artist %></h3></a>
 	<% if(user === post.user.username) { %>
 	<div class="dropdown">
 		  <img src="/dotsv.svg" class="dropbtn">

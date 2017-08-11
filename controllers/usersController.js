@@ -16,14 +16,19 @@ router.post('/new', (req, res) => {
 
 
 router.get('/:id', (req, res) => {
+	User.findOne({username : req.session.username}, (err,loggedUser) => {
 	User.findById(req.params.id, (err, foundUser) => {
+		Post.find({ _id : { $in : foundUser.posts }}, (err, posts) => {
 		res.render('users/show.ejs', {
-			showuser: foundUser,
+			UserObject: loggedUser,
+			showUser: foundUser,
 			user: req.session.username,
 			logged: req.session.logged,
-			UserObject: foundUser
+			posts: posts
+		})
 		})
 	})
+})
 })
 
 

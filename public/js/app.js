@@ -27,7 +27,7 @@ $(() => {
 		}
 	})
 
-	$('.login-btn').on('click', ()=> {
+	$('.auth').on('click', ()=> {
 		$('.login-background').css('display','block')
 	})
 })

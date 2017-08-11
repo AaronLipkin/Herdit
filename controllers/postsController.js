@@ -20,9 +20,15 @@ router.post('/new', (req, res) => {
 			console.log(foundUser)
 			foundUser.posts.push(newPost._id)
 			foundUser.save((err, data)=>{
-                res.redirect('/posts/' + newPost._id)
+                res.redirect('/')
 			})
 		})
+	})
+})
+
+router.get('/:id/delete', (req,res) => {
+	Post.findByIdAndRemove(req.params.id, (err,data) => {
+		res.redirect('back')
 	})
 })
 
