@@ -14,9 +14,9 @@
 	<% if(logged) { %>
 		<input class="up arrow" type="image" src="
 		<% if(UserObject.likedPosts.indexOf(post._id) !== -1) { %>
-		./up-selected.png
+		/up-selected.png
 		<% } else { %>
-		./up-unselected.png
+		/up-unselected.png
 		<% } %>
 		"></form>
 		</form>
@@ -32,25 +32,25 @@
 		<form action="/posts/<%= post._id %>/dislike" method="POST">
 		<input class="down arrow" type="image" src="
 		<% if(UserObject.dislikedPosts.indexOf(post._id) !== -1) { %>
-		./down-selected.png
+		/down-selected.png
 		<% } else { %>
-		./down-unselected.png
+		/down-unselected.png
 		<% } %>
 		"></form>
 		<%} else {%>
 		<form action="/posts/<%= post._id %>/like" method="POST">
-		<input class="up arrow" type="image" src="./up-unselected.png"></form>
+		<input class="up arrow" type="image" src="/up-unselected.png"></form>
 		<h2 class="score unliked"><%= post.likes - post.dislikes %></h2>
 		<form action="/posts/<%= post._id %>/dislike" method="POST">
-		<input class="down arrow" type="image" src="./down-unselected.png"></form>
+		<input class="down arrow" type="image" src="/down-unselected.png"></form>
 		<% } %>
 		</form>
 	</div>
 	<div class="post-info">
-	<a href="<%= post.link %>"><h3 class="post-title"><%= post.title %></h3></a>
-	<% if(user === post.user) { %>
+	<a target="_blank" href="<%= post.link %>"><h3 class="post-title"><%= post.title %></h3></a>
+	<% if(user === post.user.username) { %>
 	<div class="dropdown">
-		  <image src="./dotsv.svg" class="dropbtn">
+		  <img src="/dotsv.svg" class="dropbtn">
 		  <div class="dropdown-content">
 		    <a href="/posts/<%= post._id %>/edit">Edit</a>
 		    <a href="/posts/<%= post._id %>/delete?_method=DELETE">Delete</a>
@@ -65,12 +65,11 @@
 	<%= -1* Math.round((post.posted - Date.now())/3600000) %> hours
 	<% } %>
 	 ago by <a href="/users/<%= post.user._id %>"><%= post.user.username %></a><br>
-	<img class="show-video hidden" src="./play@2x.png">
-	<div class="song"><%- post.link %></div>
+	<img class="show-video hidden" src="/play@2x.png">
+	<div class="song"><%- post.embed %></div>
 	</div>
 	</div>
 <% } %>
 </section>
-<% include ./partials/login.ejs %>
 </body>
 </html>

@@ -1,12 +1,35 @@
 <header>
-<h1 class="logo">Herdit</h1>
+<a class="hidden" href="/"><img class="logo" src="/logobig.png"></a>
 <div class="login-register">
 <% if(!logged) { %>
-	<button class="login-btn">Log-In</button>
+	<button class="login-btn">Login or Sign Up</button>
 <% } else { %>
-	<p class="username"><%= user %></p>
-	<a class="new-post" href="/posts/new">New Post!</a>
-	<a href="/sessions/logout">Logout</a>
+	<h3 class="username"><%= user %></h3>
+	<a class="new-post" href="/posts/new"><button>New Post!</button></a>
+	<a href="/sessions/logout"><button>Logout</button></a>
 <% } %>
+</div>
+<div class="login-background">
+	<div class="login">
+		<div class="login-container">
+			<div class="col">
+				<h2>REGISTER</h2>
+				<form action="/sessions/register" method="POST">
+				   <input type="text" name="username" placeholder="Username"><br>
+				   <input type="password" name="password" placeholder="Password"><br>
+				   <button>Register</button>
+				</form>
+			</div>
+			<hr>
+			<div class="col">
+				<h2>LOGIN</h2>
+				<form  action="/sessions/login" method="POST">
+				   <input type="text" name="username" placeholder="Username"><br>
+				   <input type="password" name="password" placeholder="Password"><br>
+				   <button>Login</button>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
 </header>

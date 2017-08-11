@@ -4,12 +4,17 @@ const Post = require('../models/postsModel.js');
 const User = require('../models/usersModel.js')
 
 router.get('/new', (req, res) => {
-	res.render('posts/new.ejs')
+	res.render('posts/new.ejs', {
+		user: req.session.username,
+		logged: req.session.logged
+	})
 })
 
 router.post('/new', (req, res) => {
 	User.findOne({username : req.session.username}, (err, foundUser) => {
 		req.body.user = foundUser;
+		let youtubeId = req.body.link.split('?v=')[1]
+		req.body.embed = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' + youtubeId + '" frameborder="0" allowfullscreen></iframe>'
 		req.body.posted = Date.now()
 		Post.create(req.body, (err, newPost)=> {
 			console.log(foundUser)

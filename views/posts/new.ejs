@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<% include ../partials/head.ejs %>
 	<title>New Post</title>
 </head>
 <body>
+<% include ../partials/header.ejs %>
 	<form action="/posts/new" method="POST">
 		<input type="text" name="title" placeholder="Title" required>
-		<input type="text" name="desc" placeholder="Description">
+		<input type="text" name="artist" placeholder="Artist" required>
 		<input type="text" name="link" placeholder="URL" required>
 		<input type="submit" value="Post!">
 	</form>

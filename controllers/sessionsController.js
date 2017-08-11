@@ -69,7 +69,7 @@ else {
     // lets set up the session in here we can use the same code we created in the login
     req.session.username = newUser.username;
     req.session.logged   = true;
-    res.redirect('/')
+    res.redirect('back')
   });
 }
 })
