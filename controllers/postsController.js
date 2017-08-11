@@ -26,6 +26,25 @@ router.post('/new', (req, res) => {
 	})
 })
 
+router.get('/:id/edit', (req,res) => {
+	Post.findById(req.params.id, (err,foundPost)=> {
+		res.render('posts/edit.ejs', {
+			user: req.session.username,
+			logged: req.session.logged,
+			post: foundPost
+		})
+	})
+})
+
+router.post('/:id/edit', (req,res) => {
+	let youtubeId = req.body.link.split('?v=')[1]
+	req.body.embed = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' + youtubeId + '" frameborder="0" allowfullscreen></iframe>'
+	req.body.posted = Date.now()
+	Post.findByIdAndUpdate(req.params.id,req.body,  (err,foundPost)=> {
+		res.redirect('/')
+	})
+})
+
 router.get('/:id/delete', (req,res) => {
 	Post.findByIdAndRemove(req.params.id, (err,data) => {
 		res.redirect('back')

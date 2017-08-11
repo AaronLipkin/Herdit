@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<% include ../partials/head.ejs %>
+	<title>New Post</title>
+</head>
+<body>
+<% include ../partials/header.ejs %>
+<div class="new">
+	<form action="/posts/<%= post._id %>/edit" method="POST">
+		<input type="text" name="title" value="<%= post.title %>" placeholder="Title" required><br>
+		<input type="text" name="artist" value="<%= post.artist %>" placeholder="Artist" required><br>
+		<input type="text" name="link" value="<%= post.link %>" placeholder="URL" required><br>
+		<button>Post!</button>
+	</form>
+	</div>
+</body>
+</html>
