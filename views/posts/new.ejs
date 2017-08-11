@@ -6,11 +6,13 @@
 </head>
 <body>
 <% include ../partials/header.ejs %>
+<div class="new">
 	<form action="/posts/new" method="POST">
-		<input type="text" name="title" placeholder="Title" required>
-		<input type="text" name="artist" placeholder="Artist" required>
-		<input type="text" name="link" placeholder="URL" required>
-		<input type="submit" value="Post!">
+		<input type="text" name="title" placeholder="Title" required><br>
+		<input type="text" name="artist" placeholder="Artist" required><br>
+		<input type="text" name="link" placeholder="URL" required><br>
+		<button>Post!</button>
 	</form>
+	</div>
 </body>
 </html>

@@ -239,3 +239,19 @@ button:hover {
 	color: orange;
 }
 
+.new {
+	margin: 40px auto;
+	width: 400px;
+	text-align: center;
+}
+
+.new input {
+	margin: 5px;
+	font-size: 20px;
+}
+
+h1 {
+	text-align: center;
+	font-size: 40px;
+	font-weight: bold;
+}

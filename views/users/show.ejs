@@ -11,6 +11,7 @@
 </head>
 <body>
 <% include ../partials/header.ejs %>
+<h1>Posts by <%= showUser.username %></h1>
 <section class="posts">
 <% for(post of posts) {%>
 	<div id="<%= post._id %>" class="index-post">
